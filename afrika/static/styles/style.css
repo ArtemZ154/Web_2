@@ -1,6 +1,15 @@
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  background-size: 100%;
+  background-image: url(../images/desert.jpg);
+  font-family: roboto, sans-serif;
+  color: light_bg;
+}
+a {
+  text-decoration: none;
+  color: #1e2022;
 }
 header {
   width: 100%;
@@ -14,6 +23,17 @@ header {
 }
 header .logo {
   flex-basis: 40%;
+}
+header .sidebar {
+  display: flex;
+  width: 700px;
+  justify-content: space-between;
+}
+header .sidebar .search input {
+  display: none;
+}
+nav {
+  display: inline;
 }
 .horizontal-menu {
   display: flex;
@@ -30,10 +50,12 @@ main {
   top: 120px;
   display: flex;
   height: calc(100vh - 120px);
-  min-height: 632px;
 }
-main .article {
-  flex-basis: 40%;
+main article {
+  width: 400px;
+  float: right;
+  margin-top: 120px;
+  margin-right: 150px;
 }
 main .gallery-cards {
   height: 100%;
@@ -41,12 +63,54 @@ main .gallery-cards {
 main .gallery-cards .gallery {
   height: 80%;
   display: flex;
+  margin-bottom: 60px;
 }
 main .gallery-cards .gallery .card {
-  margin-right: 60px;
+  margin-right: 20px;
+  height: 100%;
+  width: 320px;
+}
+main .gallery-cards .gallery .card:not(:first-child) {
+  transform: scale(0.85);
 }
 main .gallery-cards .controls {
-  width: 100%;
+  width: 70%;
   display: flex;
   justify-content: space-between;
+}
+.card-photo {
+  height: 85%;
+  border-radius: 2%;
+  position: relative;
+}
+.card-photo-1 {
+  background-size: 250%;
+  background-position-x: 550px;
+  background-image: url('../images/Amboseli.jpg');
+}
+.card-photo-2 {
+  background-size: 250%;
+  background-position-x: 550px;
+  background-image: url('../images/Botswana.jpg');
+}
+.card-photo-3 {
+  background-size: 250%;
+  background-position-x: 550px;
+  background-image: url('../images/lower-zambezi-zambia.jpg');
+}
+.fav {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.card-count {
+  display: flex;
+  align-items: center;
+}
+.card-count .line {
+  height: 1px;
+  width: 60px;
+  background-color: #1e2022;
+  margin: 0px 6px;
+  border-radius: 5%;
 }
