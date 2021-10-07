@@ -12,12 +12,17 @@ body {
     background-size: 100%;
     background-image: url(../images/desert.jpg);
     font-family: roboto, sans-serif;
-    color: light_bg; 
+    color: @light_bg; 
 }
 
 a {
     text-decoration: none;
-    color: #1e2022; 
+    color: @light_bg; 
+}
+
+.btn-rounded {
+    opacity: 0.5;
+    border-radius: 100%
 }
 
 header {
@@ -31,6 +36,10 @@ header {
     align-items: center;
     .logo {
         flex-basis: 40%;
+        width: 30%;
+        .img-logo {
+            width: 14%;
+        }
     }
 
     .sidebar {
@@ -38,8 +47,21 @@ header {
         width: 700px;
         justify-content: space-between;
         .search {
+            width: 20%;
             input {
                 display: none;
+            }
+            .searchbt {
+                height: 10%;
+                img {
+                    max-width: 100%;
+                }
+            }
+            .searchbt:hover {
+                .search-input {
+                    color: rebeccapurple;
+                    display: block;
+                }
             }
         }
     }
@@ -81,6 +103,24 @@ main {
                 margin-right: 20px;
                 height: 100%;
                 width: 320px;
+                .rating {
+                    width: 50%;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-right: -1.6vh;
+                    margin-bottom: 1vh;
+                    margin-top: -0.8vh;
+                    .rating-round {
+                        height: 1.5vh;
+                        width: 1.5vh;
+                        border-radius: 100%;
+                        background-color: @light_text;
+                        opacity: 0.9
+                    }
+                    .fill {
+                        background-color: @light_bg;
+                    }
+                }
             }
             .card:not(:first-child) {
                 transform: scale(0.85);
