@@ -21,8 +21,6 @@ app.get('/test', function(request, response) {
     } else {
         response.send('No');
     };
-    
-    
 })
 
 app.get('/:page', function(request, response) {
