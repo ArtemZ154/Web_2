@@ -5,6 +5,7 @@ app.set('view engine', 'hbs');
 app.set('views', './templates');
 
 app.use(express.static('public'));
+app.use(express.static('templates'));
 
 app.get('/', function(request, response) {
     let data = {
