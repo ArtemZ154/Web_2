@@ -46,7 +46,7 @@ const inventory = {
 
 const profile = {
     'users':{
-        'Genius':{
+        0:{
             'nickname':'Genius',
             'level':'87',
             'inventory':['145623', '723532', '946362', '561292', '947394'],
@@ -54,7 +54,7 @@ const profile = {
             'avatar':'..//Genius_a.jpg',
             'len_inv': '5'
         },
-        'Ghaechka':{
+        1:{
             'nickname':'Ghaechka',
             'level':'9999',
             'inventory':['947394', '561292', '946362'],
@@ -62,7 +62,7 @@ const profile = {
             'avatar':'..//Ghaechka_a.jpg',
             'len_inv': '3'
         },
-        'kloun_maks':{
+        2:{
             'nickname':'kloun_maks',
             'level':'73',
             'inventory':['423276', '847361', '123532', '946362'],
@@ -70,7 +70,7 @@ const profile = {
             'avatar':'..//kloun_maks_a.jpg',
             'len_inv': '4'
         },
-        'Admin':{
+        3:{
             'nickname':'Admin',
             'level':'∞',
             'inventory':['145623', '561292', '123532'],
@@ -81,6 +81,28 @@ const profile = {
     }
 };
 
+function qual_l_p() {
+    let quanity_profile = 0;
+    for (var key in profile.users) {
+        quanity_profile++;
+    };
+    return quanity_profile;
+}
+
+function prof_l() {
+    let profile_last = {
+        'users': {
+            
+        }
+    };
+    
+    for (let i = 0; i < qual_l_p(); i++) {
+        let a = profile.users[i];
+        profile_last.users[a.nickname] = a;
+    };
+    return profile_last;
+}
+
 app.set('view engine', 'hbs');
 app.set('views', './templates');
 
@@ -88,12 +110,12 @@ app.use(express.static('public'));
 
 app.get('/profile/:nickname', function(request, response) {
     let nickname = request.params.nickname;
-    response.render('profile.hbs', profile.users[nickname]);
+    response.render('profile.hbs', prof_l().users[nickname]);
 });
 
 app.get('/profile/:nickname/inventory', function(request, response) {
     let nickname = request.params.nickname;
-    let inventory_profile = profile.users[nickname].inventory;
+    let inventory_profile = prof_l().users[nickname].inventory;
     let inventory_prof = {
         prof:{
 
@@ -104,25 +126,18 @@ app.get('/profile/:nickname/inventory', function(request, response) {
         b = inventory[a]
         inventory_prof.prof[i] = b;
     };
-    console.log(inventory_prof);
     response.render('inventory.hbs', inventory_prof);
 });
 
 app.get('/profiles', function(request, response) {
-    response.render('profiles.hbs', profile.users);
-    a = profile.users
-    let profiles = {
-        prof: {
-
-        }
+    data = {};
+    all_profiles = [];
+    for (let i = 0; i < qual_l_p(); i++) {
+        let a = profile.users[i].nickname;
+        all_profiles.push(a);
     };
-    for (let i = 0; i < a.length; i++) {
-        n = a[i];
-        console.log(i)
-        profiles.prof[i] = h;
-    }
-    
-    console.log(profiles);
+    data['all_profiles'] = all_profiles;
+    response.render('profiles.hbs', data);
 });
 
 app.listen(port=3000, function() {

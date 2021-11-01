@@ -7,6 +7,10 @@
     <title>All Users</title>
 </head>
 <body>
-
+    <ol>
+        {{#each all_profiles}}
+        <li><a href="/profile/{{this}}">{{this}}</a></li>
+        {{/each}}
+    </ol>
 </body>
 </html>
