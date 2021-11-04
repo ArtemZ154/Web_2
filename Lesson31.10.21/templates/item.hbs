@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Users</title>
+    <title>{{{name}}}</title>
 </head>
 <body>
-    <ol>
-        {{#each all_profiles}}
-        <li><a href="/profile/{{this}}" rel="external">{{this}}</a></li>
-        {{/each}}
-    </ol>
+    <h1>{{{name}}}</h1>
+    <h3>Price: {{{Money}}} VBucks</h3>
+    <h3>Discription: {{{discription}}}</h3>
 </body>
 </html>

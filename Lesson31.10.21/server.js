@@ -37,7 +37,7 @@ const inventory = {
             'name':'Позывной «Эльф»',
             'Money':'1200',
             'discription':'Я не могу объяснить ему отсутствие классических вытянутых ушек!',
-            'url': 'Called_Elf'
+            'url': 'called_Elf'
         },
         '6':{
             'name':'Полковник Полуночник',
@@ -49,7 +49,7 @@ const inventory = {
             'name':'Весельчак',
             'Money':'1500',
             'discription':'Спокойных Вам кошмаров с таким персонажем!',
-            'url': 'Humorist'
+            'url': 'humorist'
         }
     }
 };
@@ -99,7 +99,7 @@ function len_list(lst) {
     return quanity_profile;
 };
 
-function prof_l() {
+function prof_l(profile) {
     let profile_last = {
         'users': {
             
@@ -118,14 +118,18 @@ app.set('views', './templates');
 
 app.use(express.static('public'));
 
+app.get('/', function(req, res){
+    res.send('<a href="/profiles">Profiles</a> <a href="/items">Items</a>');
+})
+
 app.get('/profile/:nickname', function(request, response) {
     let nickname = request.params.nickname;
-    response.render('profile.hbs', prof_l().users[nickname]);
+    response.render('profile.hbs', prof_l(profile).users[nickname]);
 });
 
 app.get('/profile/:nickname/inventory', function(request, response) {
     let nickname = request.params.nickname;
-    let inventory_profile = prof_l().users[nickname].inventory;
+    let inventory_profile = prof_l(profile).users[nickname].inventory;
     let inventory_prof = {
         prof:{
 
@@ -133,7 +137,7 @@ app.get('/profile/:nickname/inventory', function(request, response) {
     };
     for (let i = 0; i < inventory_profile.length; i++) {
         a = inventory_profile[i];
-        b = inventory[a]
+        b = inventory.users[a];
         inventory_prof.prof[i] = b;
     };
     response.render('inventory.hbs', inventory_prof);
@@ -161,8 +165,22 @@ app.get('/items', function(request, response) {
         url = inventory.users[j].url;
         data.items[one_name] = url;
     };
-    console.log(data)
     response.render('items.hbs', data);
+});
+
+app.get('/item/:itemname', function(req, res) {
+    let itemname = req.params.itemname;
+    let profile_last = {
+        
+    };
+    
+    for (let i = 0; i < len_list(inventory); i++) {
+        let a = inventory.users[i];
+        if (a.url == itemname) {
+            profile_last[itemname] = a
+        };
+    };
+    res.render('item.hbs', profile_last[itemname]);
 });
 
 app.listen(port=3000, function() {
