@@ -4,10 +4,10 @@ const app = express();
 app.set('view engine', 'hbs');
 app.set('views', './templates');
 
-app.use(express.static('public'));
+app.use(express.static('static'));
 
 data_create_test = {
-
+    
 }
 
 app.get('/', function(request, response) {
@@ -17,12 +17,24 @@ app.get('/', function(request, response) {
     response.render('main.hbs', data);
 });
 
-app.get('/create_test/desc_name/', function(request, response){
-    $('.input_btn').on('click', function() {
-        console.log($('.name_test').val());
-    });
-    response.render('create_test.hbs', data_create_test);
-})
+app.get('/create_info', function(request, response){
+    let data = {
+
+    };
+    response.render('create_test.hbs', data);
+});
+
+app.get('/info_test', function(request, response){
+    let data = request.query;
+    console.log(data);
+    let count = 0;
+    for (let key in data_create_test) {
+        count++
+    }
+    data_create_test[count] = data
+    console.log(data_create_test)
+});
+
 app.listen(port=3000, function () {
     console.log('Сервер запущен...');
 });
