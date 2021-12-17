@@ -34,14 +34,16 @@ app.get('/info_test', function(request, response){
     for (let key in data_create_test) {
         count++
     }
+    console.log(data)
+    answ_questions_test[count] = data['quest_name'];
     
+
+
     data_create_test[count] = data
     delete data_create_test[count]['answer_for_question'];
     delete data_create_test[count]['count_test'];
     delete data_create_test[count]['count_answer_test'];
     delete data_create_test[count]['quest_name'];
-    answ_questions_test[count] = data
-    console.log(data)
 });
 
 app.listen(port=3000, function () {
