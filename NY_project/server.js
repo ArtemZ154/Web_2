@@ -6,8 +6,12 @@ app.set('views', './templates');
 
 app.use(express.static('static'));
 
-data_create_test = {
+let data_create_test = {
     
+}
+
+let answ_questions_test = {
+
 }
 
 app.get('/', function(request, response) {
@@ -26,13 +30,18 @@ app.get('/create_info', function(request, response){
 
 app.get('/info_test', function(request, response){
     let data = request.query;
-    console.log(data);
     let count = 0;
     for (let key in data_create_test) {
         count++
     }
+    
     data_create_test[count] = data
-    console.log(data_create_test)
+    delete data_create_test[count]['answer_for_question'];
+    delete data_create_test[count]['count_test'];
+    delete data_create_test[count]['count_answer_test'];
+    delete data_create_test[count]['quest_name'];
+    answ_questions_test[count] = data
+    console.log(data)
 });
 
 app.listen(port=3000, function () {
