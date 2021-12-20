@@ -8,9 +8,15 @@ $('.count-test').on('keyup', function () {
     $('.count-answer').on('keyup', function () {
         let count = $(this).val();
         var classList = $(this).attr('class').split(/\s+/);
+        let gen = classList[1].substring(2)
         $('.' + classList[1]).next().text("");
         for (let j = 0; j < count; j++) {
-            $(this).next().append(`<label><input type="radio" name="answer_for_question_${j}"><input type="text" placeholder="Введите ответы"></label><br>`);
+            $(this).next().append(`<label><input type="radio" name="answer_for_question${gen}" value=""><input type="text" placeholder="Введите ответы" name="answer_question_input${gen}" class="answer_question_input n-${gen}"></label><br>`);
         };
-    })
+    });
 })
+
+$('.answer_question_input').on('keyup', function () {
+    let count = $(this).val();
+    console.log(count);
+});
