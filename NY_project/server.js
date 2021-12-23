@@ -4,6 +4,7 @@ const { data } = require('jquery');
 var nunjucks = require('nunjucks') ;
 const app = express();
 var nunjucks = require('nunjucks') ;
+const { response } = require('express');
 
 nunjucks.configure('templates', {
     autoescape: true,
@@ -16,7 +17,12 @@ app.use(express.static('static'));
 const urlencodedParser = express.urlencoded({extended: false});
 
 let data_create_test = {
-    
+    '0':{
+        name: 'dvxz',
+        description: 'zcxvcx',
+        questions: { adsfcx: [ 'adsfcxz', 'vedxzv' ], vvxczv: [ 'vcxzv', 'zxves' ] },
+        true_answers: { '0': 'adsfcx', '1': 'vcxzv' },
+      }
 };
 
 app.get('/', function(request, response) {
@@ -80,7 +86,7 @@ app.post('/info_test', urlencodedParser, function(req, res){
         all_a_t[i] = a;
     };
     data_create_test[count]['true_answers'] = all_a_t;
-    console.log(data_create_test)
+    res.redirect('/')
 });
 
 app.listen(port=8000, function () {

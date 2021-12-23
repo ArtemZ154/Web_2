@@ -8,8 +8,15 @@
     <title>Прохождение теста</title>
 </head>
 <body>
-    <h1>Название теста: {{name}}</h1>
-    <p>Описание теста: {{description}}</p>
-    
+    <h1>Название теста: {{ name }}</h1>
+    <p>Описание теста: {{ description }}</p>
+    <form action="/result-test">
+        {% for question, answers in questions %}
+            {{ question }} <br>
+            {% for answer in answers %}
+                <label><input type="radio" name="answer-{{ question }}" id="" value="{{ answer }}">{{ answer }}</label><br>
+            {% endfor %}
+        {% endfor %}
+    <form>
 </body>
 </html>
