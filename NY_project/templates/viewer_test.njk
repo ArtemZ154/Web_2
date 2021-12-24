@@ -8,15 +8,22 @@
     <title>Прохождение теста</title>
 </head>
 <body>
-    <h1>Название теста: {{ name }}</h1>
+    <h3>Название теста: {{ name }}</h3>
     <p>Описание теста: {{ description }}</p>
-    <form action="/result-test">
+    <form action="/result_test" method="post">
         {% for question, answers in questions %}
             {{ question }} <br>
             {% for answer in answers %}
-                <label><input type="radio" name="answer-{{ question }}" id="" value="{{ answer }}">{{ answer }}</label><br>
+                <label>
+                    <input type="radio" name="answer-{{ question }}" id="" class="{{ question }}-{{ answer }}" value="{{ answer }}">{{ answer }}
+                </label><br>
             {% endfor %}
         {% endfor %}
+        <br>
+        <input type="text" class="first-name" placeholder="Имя" name="first_name">
+        <input type="text" class="last-name" placeholder="Фамилия" name="last_name">
+        <input type="radio" name="numbertest" id="" style="visibility: hidden" value='{{ number_test }}' checked="checked">
+        <button class="input_btn">Подтвердить</button>
     <form>
 </body>
 </html>
